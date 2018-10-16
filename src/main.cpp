@@ -7,18 +7,25 @@
 #include <WiFiManager.h>          //https://github.com/tzapu/WiFiManager
 #include <PubSubClient.h>         //https://github.com/knolleary/pubsubclient
 
+// MQTT
+#if !defined(MQTTSERVER)
+  #define MQTTSERVER "test1.mosquitto.org"
+#endif
+
+#if !defined(MQTTUSERNAME)
+  #define MQTTUSERNAME NULL
+#endif
+
+#if !defined(MQTTPASSWORD)
+  #define MQTTPASSWORD NULL
+#endif
+
 //for LED status
 #include <Ticker.h>
 Ticker ticker;
 
 // D pins, D0 & D4 are 2 built-in LEDs
 int D[10] = {D0, D1, D2, D3, D4, D5, D6, D7, D8, D9};
-
-// MQTT
-// TODO: Replace this with your server
-const char* mqttServer = "test.mosquitto.org";
-const char* mqttUsername = NULL;
-const char* mqttPassword = NULL;
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -52,7 +59,7 @@ void mqttReconnect() {
     String clientId = "ESP8266Client-";
     clientId += String(random(0xffff), HEX);
     // Attempt to connect
-    if (client.connect(clientId.c_str(), mqttUsername, mqttPassword)) {
+    if (client.connect(clientId.c_str(), MQTTUSERNAME, MQTTPASSWORD)) {
       Serial.println("connected");
       // Once connected, publish an announcement...
       client.publish("outTopic", "Connected!");
@@ -113,8 +120,8 @@ void wifiSetup() {
 }
 
 void mqttSetup() {
-  client.setServer(mqttServer, 1883);
-  client.setCallback(mqttCallback);  
+  client.setServer(MQTTSERVER, 1883);
+  client.setCallback(mqttCallback);
 }
 
 void ledSetup() {
