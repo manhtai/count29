@@ -18,6 +18,9 @@ We use [PlatformIO][1] for library management & building.
 # Install Platformio
 pip install platformio
 
+# Set enviroments
+export PLATFORMIO_BUILD_FLAGS='-DMQTTSERVER=\"test.mosquitto.org\"'
+
 # Build project
 pio run
 

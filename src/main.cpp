@@ -9,7 +9,7 @@
 
 // MQTT
 #if !defined(MQTTSERVER)
-  #define MQTTSERVER "test1.mosquitto.org"
+  #define MQTTSERVER "test.mosquitto.org"
 #endif
 
 #if !defined(MQTTUSERNAME)
