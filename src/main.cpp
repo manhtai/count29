@@ -12,6 +12,10 @@
   #define MQTTSERVER "test.mosquitto.org"
 #endif
 
+#if !defined(MQTTPORT)
+  #define MQTTPORT 1883
+#endif
+
 #if !defined(MQTTUSERNAME)
   #define MQTTUSERNAME NULL
 #endif
@@ -120,7 +124,7 @@ void wifiSetup() {
 }
 
 void mqttSetup() {
-  client.setServer(MQTTSERVER, 1883);
+  client.setServer(MQTTSERVER, MQTTPORT);
   client.setCallback(mqttCallback);
 }
 
@@ -144,7 +148,7 @@ void loop() {
   }
   client.loop();
   long now = millis();
-  
+
   if (now - lastMsg > 2000) {
     lastMsg = now;
     strcpy(msg, "");
