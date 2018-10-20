@@ -149,7 +149,7 @@ void loop() {
   client.loop();
   long now = millis();
 
-  if (now - lastMsg > 2000) {
+  if (now - lastMsg > 500) {
     lastMsg = now;
     strcpy(msg, "");
     for (int i = 0; i < 10; i++) {
