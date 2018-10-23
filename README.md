@@ -30,10 +30,12 @@ pio run --target upload
 
 ## What's missing?
 
-You need a MQTT server, and an app to pub/sub messages to it.
+You need a [MQTT server][5], and an [app][4] to pub/sub messages to it.
 
 
 [0]: https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers
 [1]: https://platformio.org/
 [2]: https://en.wikipedia.org/wiki/ESP8266
 [3]: https://github.com/nodemcu/nodemcu-devkit-v1.0
+[4]: https://github.com/manhtai/count29-app
+[5]: https://github.com/manhtai/mqtt-server
